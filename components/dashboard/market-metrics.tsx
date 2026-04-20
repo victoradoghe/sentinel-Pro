@@ -45,36 +45,36 @@ export function MarketMetrics({ token, isLoading }: MarketMetricsProps) {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
-      className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-none relative z-10"
+      className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 scrollbar-none relative z-10"
     >
       {/* Price & MCAP */}
-      <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-5 relative overflow-hidden group">
+      <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="flex items-center space-x-3 text-emerald-400/70 mb-4 relative z-10">
           <DollarSign className="w-5 h-5 text-emerald-400" />
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400/80">Trading Values</span>
         </div>
-        <div className="flex justify-between items-end relative z-10">
+        <div className="flex flex-col xs:flex-row justify-between items-start xs:items-end relative z-10 gap-4 xs:gap-0">
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-1.5">Price</div>
-            <div className="text-2xl font-black font-mono text-white tracking-tighter">{price}</div>
+            <div className="text-xl sm:text-2xl font-black font-mono text-white tracking-tighter truncate max-w-full">{price}</div>
           </div>
-          <div className="text-right">
+          <div className="xs:text-right">
             <div className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-1.5">Market Cap</div>
-            <div className="text-xl font-bold font-mono text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.3)]">{mcap}</div>
+            <div className="text-lg sm:text-xl font-bold font-mono text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.3)]">{mcap}</div>
           </div>
         </div>
       </div>
 
       {/* Liquidity Pool */}
-      <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-5 relative overflow-hidden group">
+      <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 relative overflow-hidden group">
          <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="flex items-center space-x-3 text-cyan-400/70 mb-4 relative z-10">
           <Droplets className="w-5 h-5 text-cyan-400" />
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400/80">Pool Analytics</span>
         </div>
-        <div className="flex justify-between items-end mb-4 relative z-10">
-          <div className="text-3xl font-black font-mono text-cyan-300 drop-shadow-[0_0_12px_rgba(34,211,238,0.3)] tracking-tighter">{liq}</div>
+        <div className="flex flex-col xs:flex-row justify-between items-start xs:items-end mb-4 relative z-10 gap-2 xs:gap-0">
+          <div className="text-2xl sm:text-3xl font-black font-mono text-cyan-300 drop-shadow-[0_0_12px_rgba(34,211,238,0.3)] tracking-tighter">{liq}</div>
           <div className="text-[10px] text-zinc-500 font-black uppercase tracking-[0.2em]">Total Liq</div>
         </div>
         <div className="space-y-2 relative z-10">
@@ -91,7 +91,7 @@ export function MarketMetrics({ token, isLoading }: MarketMetricsProps) {
       </div>
 
       {/* Volume Velocity */}
-      <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-5 relative overflow-hidden group">
+      <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="flex items-center space-x-3 text-purple-400/70 mb-5 relative z-10">
           <Activity className="w-5 h-5 text-purple-400" />
@@ -99,7 +99,7 @@ export function MarketMetrics({ token, isLoading }: MarketMetricsProps) {
         </div>
         
         <div className="space-y-5 relative z-10">
-          <div className="bg-black/50 rounded-xl border border-white/5 p-3">
+          <div className="bg-black/50 rounded-xl border border-white/5 p-2 sm:p-3">
             <div className="flex justify-between text-xs mb-2 border-b border-white/5 pb-2">
               <span className="text-zinc-500 font-bold tracking-widest uppercase text-[10px]">30M Volume</span>
               <span className="font-mono font-bold text-white tracking-tight">{formatCurrency(v30m)}</span>

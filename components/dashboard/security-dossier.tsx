@@ -44,7 +44,7 @@ export function SecurityDossier({ token, isLoading }: SecurityDossierProps) {
   const raw = token.rawMetrics;
 
   return (
-    <div className="flex-1 overflow-y-auto p-6 relative z-10 scrollbar-none">
+    <div className="flex-1 overflow-y-auto p-4 sm:p-6 relative z-10 scrollbar-none">
       
       {/* Cybernetic Scan Overlay */}
       <AnimatePresence>
@@ -57,9 +57,9 @@ export function SecurityDossier({ token, isLoading }: SecurityDossierProps) {
           >
             <div className="absolute inset-0 bg-grid-white opacity-5" />
             
-            <div className="w-72 relative z-10 space-y-3">
+            <div className="w-full max-w-[280px] sm:w-72 relative z-10 space-y-3 px-4">
               <div className="flex justify-between items-end">
-                <span className="text-emerald-500 font-mono text-xs tracking-[0.2em] uppercase font-bold">Protocol Active</span>
+                <span className="text-emerald-500 font-mono text-[10px] sm:text-xs tracking-[0.2em] uppercase font-bold">Protocol Active</span>
                 <span className="text-zinc-500 font-mono text-[10px] tracking-widest animate-pulse">ANALYZING</span>
               </div>
               
@@ -93,19 +93,19 @@ export function SecurityDossier({ token, isLoading }: SecurityDossierProps) {
         className="space-y-8"
       >
         {/* Header Block */}
-        <div className="flex items-start justify-between relative group">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between relative group gap-6 text-center sm:text-left">
           <div className="absolute -inset-4 bg-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-xl" />
           <div className="relative">
-            <h1 className="text-5xl font-black text-white tracking-tighter uppercase">{token.symbol}</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tighter uppercase">{token.symbol}</h1>
             <h2 className="text-sm font-mono text-zinc-400 tracking-widest mt-1 uppercase">{token.name}</h2>
-            <div className="mt-4 inline-flex border border-white/10 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 items-center space-x-3 shadow-inner">
-               <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Contract</span>
-               <span className="text-xs font-mono text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.5)]">{token.address}</span>
+            <div className="mt-4 inline-flex border border-white/10 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 items-center space-x-3 shadow-inner max-w-full">
+               <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest hidden xs:block">Contract</span>
+               <span className="text-[10px] sm:text-xs font-mono text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.5)] truncate max-w-[150px] sm:max-w-none">{token.address}</span>
             </div>
           </div>
-          <div className="flex flex-col items-end relative">
+          <div className="flex flex-col items-center sm:items-end relative">
             <div className="absolute -inset-4 rounded-full blur-2xl opacity-20" style={{ backgroundColor: getScoreColor(analysis.score) }} />
-            <div className="text-7xl font-black tabular-nums tracking-tighter" style={{ color: getScoreColor(analysis.score), textShadow: `0 0 30px ${getScoreColor(analysis.score)}40` }}>
+            <div className="text-5xl sm:text-6xl md:text-7xl font-black tabular-nums tracking-tighter" style={{ color: getScoreColor(analysis.score), textShadow: `0 0 30px ${getScoreColor(analysis.score)}40` }}>
               {analysis.score}
             </div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-black mt-2">Trust Score</div>
@@ -114,20 +114,20 @@ export function SecurityDossier({ token, isLoading }: SecurityDossierProps) {
 
         {/* Verdict Box */}
         <div className={cn(
-          "p-5 rounded-2xl border flex items-center space-x-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]",
+          "p-4 sm:p-5 rounded-2xl border flex items-center space-x-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]",
           getVerdictBoxClass(analysis.riskLevel)
         )}>
-           <div className={cn("p-3 rounded-full bg-black/40 border", getVerdictIconBorder(analysis.riskLevel))}>
-             {analysis.riskLevel === 'Low' ? <ShieldCheck className="w-6 h-6" /> : <AlertTriangle className="w-6 h-6" />}
+           <div className={cn("p-2 sm:p-3 rounded-full bg-black/40 border shrink-0", getVerdictIconBorder(analysis.riskLevel))}>
+             {analysis.riskLevel === 'Low' ? <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" /> : <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />}
            </div>
            <div>
-             <div className="font-black uppercase tracking-widest text-sm mb-1">{analysis.riskLevel} Risk</div>
-             <div className="text-sm font-mono opacity-80">{analysis.verdict}</div>
+             <div className="font-black uppercase tracking-widest text-[10px] sm:text-sm mb-1">{analysis.riskLevel} Risk</div>
+             <div className="text-xs sm:text-sm font-mono opacity-80">{analysis.verdict}</div>
            </div>
         </div>
 
         {/* Gauges & Metrics Grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           
           <MetricCard 
             title="Authority Controls" 
@@ -174,7 +174,7 @@ export function SecurityDossier({ token, isLoading }: SecurityDossierProps) {
 function MetricCard({ title, icon, value, description, alert, glow }: any) {
   return (
     <div className={cn(
-      "p-5 rounded-2xl border bg-black/40 flex flex-col relative overflow-hidden group hover:bg-black/60 transition-colors",
+      "p-4 sm:p-5 rounded-2xl border bg-black/40 flex flex-col relative overflow-hidden group hover:bg-black/60 transition-colors",
       alert ? "border-rose-500/50 shadow-[0_0_20px_rgba(225,29,72,0.1)] text-rose-200" : "border-white/10"
     )}>
       {/* Subtle hover glow tied to the icon color */}
@@ -185,8 +185,8 @@ function MetricCard({ title, icon, value, description, alert, glow }: any) {
         {icon}
         <span className="text-[10px] uppercase font-black tracking-[0.2em]">{title}</span>
       </div>
-      <div className={cn("text-3xl font-black font-mono tracking-tighter mb-1 relative z-10", alert ? "text-rose-400" : "text-white")}>{value}</div>
-      <div className="text-xs text-zinc-500 font-mono tracking-wide relative z-10">{description}</div>
+      <div className={cn("text-2xl sm:text-3xl font-black font-mono tracking-tighter mb-1 relative z-10", alert ? "text-rose-400" : "text-white")}>{value}</div>
+      <div className="text-[10px] sm:text-xs text-zinc-500 font-mono tracking-wide relative z-10">{description}</div>
       
       {/* Bottom accent line */}
       <div className={cn("absolute bottom-0 left-0 h-0.5 w-1/3 transition-all duration-300 group-hover:w-full", alert ? "bg-rose-500" : "bg-white/10")} />

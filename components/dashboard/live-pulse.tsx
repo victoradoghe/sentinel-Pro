@@ -46,7 +46,7 @@ export function LivePulse({ listings, isLoading, selected, onSelect }: LivePulse
               key={token.address}
               onClick={() => onSelect(token)}
               className={cn(
-                "w-full text-left p-4 rounded-xl border transition-all duration-300 relative overflow-hidden group",
+                "w-full text-left p-3 sm:p-4 rounded-xl border transition-all duration-300 relative overflow-hidden group",
                 isSelected 
                   ? "bg-emerald-950/20 border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.1)]" 
                   : "bg-black/20 border-white/5 hover:bg-white/5 hover:border-white/10"
@@ -57,32 +57,32 @@ export function LivePulse({ listings, isLoading, selected, onSelect }: LivePulse
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
               )}
               
-              <div className="flex items-center justify-between mb-3 relative z-10">
-                <div className="flex items-center space-x-3 truncate">
+              <div className="flex items-center justify-between mb-3 relative z-10 gap-2">
+                <div className="flex items-center space-x-2 sm:space-x-3 truncate">
                   {token.logoURI ? (
-                    <img src={token.logoURI} alt={token.symbol} className="w-8 h-8 rounded-full border border-white/10 shadow-lg bg-black" />
+                    <img src={token.logoURI} alt={token.symbol} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/10 shadow-lg bg-black shrink-0" />
                   ) : (
-                    <div className="w-8 h-8 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-[10px] font-black text-white shadow-lg">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-[10px] font-black text-white shadow-lg shrink-0">
                       {token.symbol?.slice(0,2)}
                     </div>
                   )}
                   <span className={cn(
-                    "font-bold truncate text-lg tracking-tight",
+                    "font-bold truncate text-base sm:text-lg tracking-tight",
                     isSelected ? "text-white" : "text-zinc-300 group-hover:text-white transition-colors"
                   )}>
                     {token.symbol}
                   </span>
                 </div>
-                <Badge variant="outline" className={cn("text-[10px] uppercase font-black px-2 py-0.5 tracking-wider backdrop-blur-md", getRiskColor(riskLevel))}>
+                <Badge variant="outline" className={cn("text-[8px] sm:text-[10px] uppercase font-black px-1.5 sm:px-2 py-0.5 tracking-wider backdrop-blur-md shrink-0", getRiskColor(riskLevel))}>
                   {riskLevel}
                 </Badge>
               </div>
-              <div className="flex justify-between items-end text-xs relative z-10">
-                <span className="text-zinc-500 font-mono tracking-wider">{token.address.slice(0, 5)}...{token.address.slice(-4)}</span>
+              <div className="flex justify-between items-end text-[10px] sm:text-xs relative z-10">
+                <span className="text-zinc-500 font-mono tracking-wider truncate max-w-[100px] sm:max-w-none">{token.address.slice(0, 4)}...{token.address.slice(-4)}</span>
                 <div className="flex flex-col items-end">
-                   <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-widest mb-0.5">Trust Score</span>
+                   <span className="text-[9px] sm:text-[10px] text-zinc-500 uppercase font-bold tracking-widest mb-0.5">Trust Score</span>
                    <span className={cn(
-                     "font-mono font-bold text-sm",
+                     "font-mono font-bold text-xs sm:text-sm",
                      isSelected ? "neon-text-emerald text-emerald-400" : "text-zinc-300"
                    )}>
                      {score}/100
