@@ -17,15 +17,18 @@ export async function GET() {
     // 1. Discovery: Get new listings
     const listings = await getNewListings();
     
+    // Deduplicate by address to prevent React duplicate key errors
+    const uniqueListings = Array.from(new Map(listings.map((item: any) => [item.address, item])).values());
+
     // Safety check just in case Birdeye returns empty or fails
-    if (!listings || listings.length === 0) {
+    if (!uniqueListings || uniqueListings.length === 0) {
       return NextResponse.json({ data: [] });
     }
 
     // 2 & 3. Security and Market Data for top 3 listings to respect rate limits
     // We fetch sequentially instead of Promise.all to avoid 429 Too Many Requests
     const analyzedListings = [];
-    const topListings = listings.slice(0, 3); // Limit to top 3 to keep response times < 5s
+    const topListings = uniqueListings.slice(0, 3); // Limit to top 3 to keep response times < 5s
 
     for (const listing of topListings) {
       const address = listing.address;
